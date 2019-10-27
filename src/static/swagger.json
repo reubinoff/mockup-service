@@ -1,15 +1,11 @@
 {
     "openapi": "3.0.0",
     "info": {
-      "description": "sean",
+      "description": "Api for robot and perfecto mobile",
       "version": "1.0.0",
-      "title": "Seans-Python3-Flask-Rest-Boilerplate",
+      "title": "Quali-Verizon",
       "contact": {
-        "email": "seanwasere@gmail.com"
-      },
-      "license": {
-        "name": "MIT",
-        "url": "https://opensource.org/licenses/MIT"
+        "email": "moshe.r@quali.com"
       }
     }
   }
