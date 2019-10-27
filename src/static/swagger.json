@@ -7,5 +7,10 @@
       "contact": {
         "email": "moshe.r@quali.com"
       }
-    }
+    },
+    "servers": [
+        {
+          "url": "/"
+        }
+      ]
   }
