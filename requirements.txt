@@ -1,4 +1,3 @@
 flask
 Flask-RESTful
 gunicorn
-flask_swagger_ui

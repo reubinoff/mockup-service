@@ -13,7 +13,16 @@ class Home(Resource):
 class Perfecto(Resource):
     def get(self):
         time.sleep(1)
-        return jsonify({"status": True})
+        return jsonify({
+			"ROBOT":{
+				"GET": "/robot",
+				"POST": "/robot"
+			},
+			"PERFECTO":{
+				"POST": "/perfecto",
+				"DELETE": "/perfecto"
+			}
+		})
     
     @expect_json_data
     def post(self, data):
