@@ -7,13 +7,7 @@ from .helpers import expect_json_data
 
 class Home(Resource):
 	def get(self):
-		data = {'success': True}
-		return jsonify(data)
-
-class Perfecto(Resource):
-    def get(self):
-        time.sleep(1)
-        return jsonify({
+		return jsonify({
 			"ROBOT":{
 				"GET": "/robot",
 				"POST": "/robot"
@@ -23,6 +17,11 @@ class Perfecto(Resource):
 				"DELETE": "/perfecto"
 			}
 		})
+
+class Perfecto(Resource):
+    def get(self):
+        time.sleep(1)
+        return jsonify({"status": True})
     
     @expect_json_data
     def post(self, data):
