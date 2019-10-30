@@ -26,12 +26,12 @@ class Perfecto(Resource):
     @expect_json_data
     def post(self, data):
         time.sleep(2)
-        res = {"data": data, "status": True}
+        res = {"action": "checked-in","data": data, "status": True}
         return jsonify(res)
 
     def delete(self):
         time.sleep(1)
-        return jsonify({"status": True})
+        return jsonify({"action": "checked-out","status": True})
 
 class Robot(Resource):
     def get(self):
