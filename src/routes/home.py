@@ -42,15 +42,13 @@ class Robot(Resource):
     
     @expect_json_data
     def post(self, data):
-        time.sleep(2)
-        res = {"data": data, "status": True}
         if data.get("host") is None or data.get("sandbox_id") is None:
             return jsonify({"status": False, "error": "invlid data"})
         try:
-            results = run_test(data["host"], data["sandbox_id"])
+            results =self.run_test(data["host"], data["sandbox_id"])
         except Exception as e:
             abort(e)
-        return jsonify(results)
+        return jsonify({"data": results, "status": True})
 
     def run_test(self,ip, sandboxId):
         session = api.CloudShellAPISession(ip, 'admin', 'admin', 'Global')
@@ -63,8 +61,8 @@ class Robot(Resource):
         return resourceDict
 
 
-if __name__ == '__main__':
-    print returnResources('localhost', '33b2b0e4-2c69-4525-a15c-798081ad4543')
+# if __name__ == '__main__':
+#     print returnResources('localhost', '33b2b0e4-2c69-4525-a15c-798081ad4543')
 
 
 
