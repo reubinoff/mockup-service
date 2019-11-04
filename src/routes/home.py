@@ -52,7 +52,7 @@ class Robot(Resource):
         return jsonify({"data": results, "status": True})
 
     def run_test(self,ip, sandboxId):
-        session = cs_api.CloudShellAPISession(ip, 'admin', 'admin', 'Global')
+        session = cs_api.CloudShellAPISession(ip, 'admin', 'admin', 'Global', cloudshell_api_scheme="https")
         resourceDict = {}
         for resource in session.GetReservationDetails(reservationId=sandboxId).ReservationDescription.Resources:
             attributeDict = {}
