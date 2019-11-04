@@ -55,10 +55,8 @@ class Robot(Resource):
         session = cs_api.CloudShellAPISession(ip, 'admin', 'admin', 'Global')
         resourceDict = {}
         for resource in session.GetReservationDetails(reservationId=sandboxId).ReservationDescription.Resources:
-            print(resource.name)
             attributeDict = {}
             for attribute in session.GetResourceDetails(resource.Name).ResourceAttributes:
-                print(attribute.name)
                 attributeDict[attribute.Name] = attribute.Value
             resourceDict[resource.Name] = attributeDict
         return resourceDict
