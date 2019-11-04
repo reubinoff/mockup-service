@@ -47,7 +47,7 @@ class Robot(Resource):
         try:
             results =self.run_test(data["host"], data["sandbox_id"])
         except Exception as e:
-            abort(e)
+            abort(403, e.msg)
         return jsonify({"data": results, "status": True})
 
     def run_test(self,ip, sandboxId):
