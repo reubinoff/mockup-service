@@ -1,4 +1,6 @@
 import time
+import cloudshell.api.cloudshell_api as api
+
 
 from flask import Flask, jsonify, Response
 from flask_restful import Resource, marshal_with, abort
@@ -42,7 +44,23 @@ class Robot(Resource):
     def post(self, data):
         time.sleep(2)
         res = {"data": data, "status": True}
+        results = run_test(data["host"], data["port"])
         return jsonify(res)
+
+    def run_test(self,ip, sandboxId):
+        session = api.CloudShellAPISession(ip, 'admin', 'admin', 'Global')
+        resourceDict = {}
+        for resource in session.GetReservationDetails(reservationId=sandboxId).ReservationDescription.Resources:
+            attributeDict = {}
+            for attribute in session.GetResourceDetails(resource.Name).ResourceAttributes:
+                attributeDict[attribute.Name] = attribute.Value
+            resourceDict[resource.Name] = attributeDict
+        return resourceDict
+
+
+if __name__ == '__main__':
+    print returnResources('localhost', '33b2b0e4-2c69-4525-a15c-798081ad4543')
+
 
 
 api.add_resource(Home, '/')
