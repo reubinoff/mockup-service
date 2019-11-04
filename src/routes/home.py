@@ -44,7 +44,12 @@ class Robot(Resource):
     def post(self, data):
         time.sleep(2)
         res = {"data": data, "status": True}
-        results = run_test(data["host"], data["sandbox_id"])
+        if data.get("host") is None or data.get("sandbox_id") is None:
+            return jsonify({"status": False, "error": "invlid data"})
+        try:
+            results = run_test(data["host"], data["sandbox_id"])
+        except Exception as e:
+            abort(e)
         return jsonify(results)
 
     def run_test(self,ip, sandboxId):
