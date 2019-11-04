@@ -1,6 +1,6 @@
 import time
 import cloudshell.api.cloudshell_api as cs_api
-
+import traceback
 
 from flask import Flask, jsonify, Response
 from flask_restful import Resource, marshal_with, abort
@@ -47,6 +47,7 @@ class Robot(Resource):
         try:
             results =self.run_test(data["host"], data["sandbox_id"])
         except Exception as e:
+            traceback.print_exc()
             return jsonify({"status": False, "error": str(e)})
         return jsonify({"data": results, "status": True})
 
