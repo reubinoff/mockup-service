@@ -44,8 +44,8 @@ class Robot(Resource):
     def post(self, data):
         time.sleep(2)
         res = {"data": data, "status": True}
-        results = run_test(data["host"], data["port"])
-        return jsonify(res)
+        results = run_test(data["host"], data["sandbox_id"])
+        return jsonify(results)
 
     def run_test(self,ip, sandboxId):
         session = api.CloudShellAPISession(ip, 'admin', 'admin', 'Global')
