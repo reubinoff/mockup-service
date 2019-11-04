@@ -1,4 +1,5 @@
-python -m virtualenv venv
+pip install virtualenv
+virtualenv venv
 . venv/bin/activate
 pip install -r requirements.txt
 python setup.py install
